@@ -14,6 +14,10 @@ router.get("/confirmEmail", (req, res) => {
     res.render("signin");
   });
 
+  router.get("/sendMessage", (req, res) => {
+    res.render("sendToLambda");
+  });
+
 router.post("/register",  async function (req, res) {
   const response =  await signUp(req.body.email, req.body.password);
   console.log(response);
@@ -29,6 +33,7 @@ router.post("/confirmEmail",  async function (req, res) {
   router.post("/signin",  async function (req, res) {
     const response =  await signin(req.body.email, req.body.password);
     console.log(response);
+    res.redirect("/sendMessage")
   });
 
 module.exports = router;
